@@ -1,4 +1,4 @@
-FROM ronghe/centos7:ronghe-httpd-build
+FROM rhcentos7/httpd-build
 MAINTAINER The ronghe php build rpm image <www.ronghe.com> - chow
 
 # rpmbuild php.

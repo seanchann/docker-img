@@ -3,8 +3,8 @@ Note php base on httpd build image or install your httpd rpm packages.
 
 
 Perform the build
-#docker build --rm -t ronghe/centos7:ronghe-php-build .
+#docker build --rm -t rhcentos7/php-build:latest .
 
 
 Launching image
-#docker run --rm -it -v /opt/dockershare:/opt/dockershare ronghe/centos7:ronghe-php-build  /bin/bash
+#docker run --rm -it -v /opt/dockershare:/opt/dockershare rhcentos7/php-build  /bin/bash

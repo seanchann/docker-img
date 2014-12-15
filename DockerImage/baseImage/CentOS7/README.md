@@ -1,8 +1,8 @@
 Our base image base on CentOS7 that inherited from Docker hub CentOS official branch
 
 Perform the build
-#docker build --rm -t ronghe/centos7:ronghe-base .
+#docker build --rm -t rhcentos7/base-image:latest .
 
 
 Launching image
-#docker run --rm -it -v /opt/dockershare:/opt/dockershare ronghe/centos7:ronghe-base /bin/bash
+#docker run --rm -it -v /opt/dockershare:/opt/dockershare rhcentos7/base-image /bin/bash

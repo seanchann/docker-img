@@ -1,4 +1,4 @@
-FROM ronghe/centos7:ronghe-toolschain
+FROM rhcentos7/toolchain
 MAINTAINER The ronghe mysql build rpm image <www.ronghe.com> - chow
 
 

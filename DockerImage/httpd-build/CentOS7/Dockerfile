@@ -1,4 +1,4 @@
-FROM ronghe/centos7:ronghe-mysql-build
+FROM rhcentos7/mysql-build
 MAINTAINER The ronghe httpd build rpm image <www.ronghe.com> - chow
 
 # rpmbuild httpd.

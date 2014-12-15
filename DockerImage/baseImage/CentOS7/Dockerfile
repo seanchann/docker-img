@@ -1,4 +1,4 @@
-FROM localhost:5000/ronghe/centos7:7.0
+FROM centos:latest
 MAINTAINER The rongheTV base image <www.ronghe.com> - chow
 
 # add the worker user named smit

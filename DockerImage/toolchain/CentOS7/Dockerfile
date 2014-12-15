@@ -1,4 +1,4 @@
-FROM ronghe/centos7:ronghe-base
+FROM rhcentos7/base-image
 MAINTAINER The ronghe development tools chain base image <www.ronghe.com> - chow
 
 #install build tools
@@ -10,4 +10,12 @@ RUN mkdir -p ~/rpmbuild/{BUILD,RPMS,SOURCES,SPECS,SRPMS}
 RUN echo '%_topdir %(echo $HOME)/rpmbuild'  > ~/.rpmmacros
 
 USER root
+
+# built rpm with sign
+ADD  RPM-GPG-KEY-RH-7.public  /opt/
+RUN  rpm --import /opt/RPM-GPG-KEY-RH-7.public
+RUN  echo '%_signature gpg' >> ~/.rpmmacros
+RUN  echo '%_gpg_name  xqzhou (RPM Devel) <xqzhou@ronghe.tv>' >> ~/.rpmmacros
+
+
 
