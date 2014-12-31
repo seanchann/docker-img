@@ -2,26 +2,28 @@
 
 SPACEWALK_HOME=/opt/dockershare/spacewalk/
 PG_HOME=${SPACEWALK_HOME}/pgsql/
-NEED_INIT="false"
+#NEED_INIT="false"
 PGNAME=spaceschema
 
-exists_db() {
-    EXISTS=$(runuser - postgres -c 'psql -t -c "select datname from pg_database where datname='"'$PGNAME'"';"')
-    if [ "x$EXISTS" == "x $PGNAME" ] ; then
-        return 0
-    else
-        return 1
-    fi
-}
+#exists_db() {
+#    su - postgres -c 'pg_ctl start -D /var/lib/pgsql/data'
+#    EXISTS=$(runuser - postgres -c 'psql -t -c "select datname from pg_database where datname='"'$PGNAME'"';"')
+#    su - postgres -c 'pg_ctl stop -D /var/lib/pgsql/data'
+#    if [ "x$EXISTS" == "x $PGNAME" ] ; then
+#        return 0
+#    else
+#        return 1
+#    fi
+#}
 
 
-if exists_db ; then
-    echo "Database \"$PGNAME\" already exists"
-    NEED_INIT="false"
-else
-    echo "Database \"$PGNAME\" does not exist"
-    NEED_INIT="true"
-fi
+#if exists_db ; then
+#    echo "Database \"$PGNAME\" already exists"
+#    NEED_INIT="false"
+#else
+#    echo "Database \"$PGNAME\" does not exist"
+#    NEED_INIT="true"
+#fi
 
 
 
@@ -34,11 +36,11 @@ function init_pgsql()
 
     ln -s ${PG_HOME} /var/lib/pgsql
 
-    chown -R -v postgres.postgres ${PG_HOME}
+    chown -R  postgres.postgres ${PG_HOME}
 }
 
 
-if [ "$NEED_INIT" = "true" ]; then
+if [ ! -f "$PG_HOME/data/postgresql.conf" ]; then
     echo "init spacewalk begin..."
     init_pgsql
     
@@ -56,7 +58,6 @@ if [ "$NEED_INIT" = "true" ]; then
     
     mkdir -p /opt/dockershare/spacewalk/var/satellite
     chown -R -v apache.root /opt/dockershare/spacewalk/var/satellite
-
 fi
 
  

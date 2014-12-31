@@ -10,16 +10,18 @@ At the moment the application and the Postgres database all run within the same 
 Notice:Our base image base on CentOS7 that inherited from Docker hub CentOS official branch
 
 ##Building the image
-#docker build --rm -t rhcentos6/rpm-repository:latest .
+#docker build --rm -t rhcentos6/spacewalk:latest .
 
 Launching image with data-volume and use external pgsql with --link .
 Notice : we configure FQDN: "yum.ronghe.tv"(this for ssl certs)
-#docker run --privileged -h yum.ronghe.tv --volumes-from data-volume -d --link postgresql:pgdb -P --name rpm-repository rhcentos6/rpm-repository
+#docker run --privileged -h yum.ronghe.tv --volumes-from data-volume -d --link postgresql:pgdb -P --name rpm-repository rhcentos6/spacewalk
 build postgresql within spacewalk
-#docker run --privileged -h yum.ronghe.tv --volumes-from data-volume -d  -p 80:80 -p 443:443 --name rpm-repository rhcentos6/rpm-repository
+#docker run --privileged -h yum.ronghe.tv --volumes-from data-volume -d  -p 80:80 -p 443:443 --name rpm-repository rhcentos6/spacewalk
 
 run docker with run-spacewalk.sh . beause of CMD default config lost when commit
-#docker run --privileged -h yum.ronghe.tv --volumes-from data-volume -d  -p 80:80 -p 443:443 --name rpm-repository rhcentos6/rpm-repository /bin/bash /usr/local/bin/run-spacewalk.sh
+#docker run --privileged -h yum.ronghe.tv --volumes-from data-volume\
+     -d  -p 80:80 -p 443:443 --name rpm-repository\
+     rhcentos6/spacewalk /bin/bash /usr/local/bin/run-spacewalk.sh
 
 
 First start a container exec bottom command for init spacewalk:
