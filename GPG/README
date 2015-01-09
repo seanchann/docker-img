@@ -1,0 +1,15 @@
+the GPG key information flowing:
+
+
+key pair: RPM-GPG-KEY-RH.private and RPM-GPG-KEY-RH.public
+kind of key: RSA and RSA (default)
+keysize: 2048
+expire:  never
+Real name:  xqzhou
+Email:  xqzhou@ronghe.tv
+Comment: RPM development
+Key-ID: 29AAC354
+uid:   xqzhou (RPM development) <xqzhou@ronghe.tv>
+Key fingerprint: 85B8 EC5B 17AB B72B 665B  0BF0 E4B9 B262 29AA C354
+pass Passphrase: 52983720_smit
+
