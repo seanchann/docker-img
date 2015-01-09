@@ -1,0 +1,12 @@
+diff -u php.5.5.2/sapi/apache2handler/config.m4.install php-5.5.2/sapi/apache2handler/config.m4
+--- php-5.5.2/sapi/apache2handler/config.m4.install	2013-08-15 13:42:04.000000000 -0700
++++ php-5.5.2/sapi/apache2handler/config.m4	2013-08-22 17:10:04.993476288 -0700
+@@ -67,7 +67,7 @@
+   fi
+ 
+   APXS_LIBEXECDIR='$(INSTALL_ROOT)'`$APXS -q LIBEXECDIR`
+-  if test -z `$APXS -q SYSCONFDIR`; then
++  if true; then
+     INSTALL_IT="\$(mkinstalldirs) '$APXS_LIBEXECDIR' && \
+                  $APXS -S LIBEXECDIR='$APXS_LIBEXECDIR' \
+                        -i -n php5"

@@ -1,0 +1,24 @@
+diff -u Makefile.frag.orig Makefile.frag
+--- php-5.5.2/scripts/Makefile.frag.phpize	2013-08-15 13:42:04.000000000 -0700
++++ php-5.5.2/scripts/Makefile.frag		2013-08-21 12:20:48.453809382 -0700
+@@ -4,7 +4,7 @@
+ #
+ 
+ phpincludedir = $(includedir)/php
+-phpbuilddir = $(libdir)/build
++phpbuilddir = $(libdir)/php/build
+ 
+ BUILD_FILES = \
+ 	scripts/phpize.m4 \
+diff -u phpize.in.orig phpize.in
+--- php-5.5.2/scripts/phpize.in.phpize	2013-08-15 13:42:04.000000000 -0700
++++ php-5.5.2/scripts/phpize.in	2013-08-21 12:21:37.722079576 -0700
+@@ -4,7 +4,7 @@
+ prefix='@prefix@'
+ datarootdir='@datarootdir@'
+ exec_prefix="`eval echo @exec_prefix@`"
+-phpdir="`eval echo @libdir@`/build"
++phpdir="@libdir@/php/build"
+ includedir="`eval echo @includedir@`/php"
+ builddir="`pwd`"
+ SED="@SED@"

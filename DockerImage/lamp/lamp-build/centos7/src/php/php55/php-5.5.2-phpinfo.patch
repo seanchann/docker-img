@@ -1,0 +1,58 @@
+diff -u configure.in.orig configure.in
+--- php-5.5.2/configure.in.phpinfo	2013-08-15 13:42:04.000000000 -0700
++++ php-5.5.2/configure.in	2013-08-22 14:18:44.418116137 -0700
+@@ -1225,7 +1225,7 @@
+ EXPANDED_DATADIR=$datadir
+ EXPANDED_PHP_CONFIG_FILE_PATH=`eval echo "$PHP_CONFIG_FILE_PATH"`
+ EXPANDED_PHP_CONFIG_FILE_SCAN_DIR=`eval echo "$PHP_CONFIG_FILE_SCAN_DIR"`
+-INCLUDE_PATH=.:$EXPANDED_PEAR_INSTALLDIR
++INCLUDE_PATH=.:$EXPANDED_PEAR_INSTALLDIR:${EXPANDED_DATADIR}/php
+ 
+ exec_prefix=$old_exec_prefix
+ libdir=$old_libdir
+@@ -1269,7 +1269,11 @@
+   AC_DEFINE_UNQUOTED(PHP_UNAME,"$PHP_UNAME",[hardcode for each of the cross compiler host])
+   ;;
+ *)
+-  PHP_UNAME=`uname -a | xargs`
++  if test -r /etc/oracle-release; then
++    PHP_UNAME=`cat /etc/oracle-release | xargs`
++  else
++    PHP_UNAME=`uname -a | xargs`
++  fi
+   AC_DEFINE_UNQUOTED(PHP_UNAME,"$PHP_UNAME",[uname -a output])
+   PHP_OS=`uname | xargs`
+   AC_DEFINE_UNQUOTED(PHP_OS,"$PHP_OS",[uname output])
+diff -u php-5.5.2/ext/standard/info.c.phpinfo  php-5.5.2/ext/standard/info.c
+--- php-5.5.2/ext/standard/info.c.phpinfo	2013-08-15 13:42:04.000000000 -0700
++++ php-5.5.2/ext/standard/info.c	2013-08-22 10:50:24.781082583 -0700
+@@ -577,7 +577,7 @@
+ #else
+ #ifdef HAVE_SYS_UTSNAME_H
+ 	struct utsname buf;
+-	if (uname((struct utsname *)&buf) == -1) {
++	if (1) {
+ 		php_uname = PHP_UNAME;
+ 	} else {
+ #ifdef NETWARE
+@@ -709,9 +709,6 @@
+ #ifdef ARCHITECTURE
+ 		php_info_print_table_row(2, "Architecture", ARCHITECTURE);
+ #endif
+-#ifdef CONFIGURE_COMMAND
+-		php_info_print_table_row(2, "Configure Command", CONFIGURE_COMMAND );
+-#endif
+ 
+ 		if (sapi_module.pretty_name) {
+ 			php_info_print_table_row(2, "Server API", sapi_module.pretty_name );
+diff -u php-5.5.2/ext/standard/tests/general_functions/phpinfo.phpt.phpinfo 
+--- php-5.5.2/ext/standard/tests/general_functions/phpinfo.phpt.phpinfo	2013-08-15 13:42:04.000000000 -0700
++++ php-5.5.2/ext/standard/tests/general_functions/phpinfo.phpt	2013-08-22 10:52:41.533418641 -0700
+@@ -20,7 +20,6 @@
+ 
+ System => %s
+ Build Date => %s%a
+-Configure Command => %s
+ Server API => Command Line Interface
+ Virtual Directory Support => %s
+ Configuration File (php.ini) Path => %s

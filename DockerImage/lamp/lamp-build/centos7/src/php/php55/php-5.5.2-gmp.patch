@@ -1,0 +1,50 @@
+diff -u php-5.5.2/ext/gmp/tests/022.phpt.orig php-5.5.2/ext/gmp/tests/022.phpt
+--- php-5.5.2/ext/gmp/tests/022.phpt.orig	2013-08-15 13:42:04.000000000 -0700
++++ php-5.5.2/ext/gmp/tests/022.phpt	2013-08-22 12:01:42.153420898 -0700
+@@ -39,23 +39,23 @@
+ ?>
+ --EXPECTF--	
+ string(1) "3"
+-string(2) "-4"
+ string(2) "11"
++string(3) "-30"
+ string(1) "1"
+ string(4) "-805"
+ string(3) "359"
+ string(1) "3"
+-string(2) "32"
+-string(5) "-2257"
++string(3) "254"
++string(6) "-17915"
+ string(4) "3003"
+-string(3) "-10"
+-string(2) "19"
++string(6) "-92342"
++string(6) "175675"
+ string(1) "2"
+ string(2) "67"
+ string(2) "-3"
+ string(2) "15"
+-string(7) "-601519"
+-string(1) "6"
++string(9) "-14436457"
++string(3) "144"
+ string(3) "345"
+ string(1) "1"
+ string(1) "0"
+@@ -63,11 +63,11 @@
+ string(5) "84319"
+ string(9) "-84241831"
+ string(1) "1"
+-string(13) "-156252240050"
+-string(14) "16689072773537"
++string(12) "167180205823"
++string(15) "-17856272782919"
+ string(3) "195"
+-string(11) "46994884483"
+-string(9) "-68772552"
++string(15) "-20983781660442"
++string(11) "30707772373"
+ 
+ Warning: gmp_gcdext(): Unable to convert variable to GMP - wrong type in %s on line %d
+ bool(false)

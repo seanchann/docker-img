@@ -1,0 +1,20 @@
+# LAMP-Base.repo
+#
+
+[LAMP-base]
+name=LAMP-$releasever - Base
+#mirrorlist=http://192.168.61.191/repo/lamp/centos/?release=$releasever&arch=$basearch&repo=os&infra=$infra
+baseurl=http://192.168.60.25/repolamp/centos/$releasever/os/$basearch/Packages
+gpgcheck=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+includepkgs=mysql*
+
+
+#released updates 
+#[LAMP-updates]
+#name=CentOS-$releasever - Updates
+#mirrorlist=http://192.168.61.191/repo/voip/centos/?release=$releasever&arch=$basearch&repo=update&infra=$infra
+#baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/
+#gpgcheck=0
+#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-7
+
