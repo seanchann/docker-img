@@ -3,5 +3,5 @@ Perform the build
 
 
 Launching image
-#docker run -d -p 80:80 --volumes-from data-volume rhcentos7/repository /bin/bash
+#docker run -d -p 80:80 --volumes-from rpmpackage-data  --volumes-from data-volume rhcentos7/repository /bin/bash
 
