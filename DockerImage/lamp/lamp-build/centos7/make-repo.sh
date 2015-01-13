@@ -14,6 +14,6 @@ repodir=/var/www/html/repolamp/centos/7/os/x86_64/Packages
 
 
 __rpm_make_repo $repodir
-mv /LAMP-Base.repo   /var/www/html/repolamp/LAMP-Base.repo
+cp -rf /LAMP-Base.repo   /var/www/html/repolamp/LAMP-Base.repo
 __rpm_run_httpd
 
