@@ -1,0 +1,10 @@
+FROM rhcentos7/base-image
+MAINTAINER The rongheTV lvs image <www.ronghe.com> - seanchann
+
+
+ADD /supervisord.d/  /etc/supervisord.d/
+RUN chmod 600 /etc/supervisord.d/*.ini
+
+
+
+CMD ["/bin/bash", "/run-lb.sh"]

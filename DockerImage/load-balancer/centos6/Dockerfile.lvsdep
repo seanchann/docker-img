@@ -1,0 +1,6 @@
+FROM rhcentos6/supervisor
+MAINTAINER The rongheTV lvs dep image <www.ronghe.com> - seanchann
+
+
+RUN yum install --setopt=tsflags=nodocs -y piranha httpd ipvsadm
+

@@ -1,0 +1,6 @@
+FROM rhcentos7/supervisor
+MAINTAINER The rongheTV lvs image <www.ronghe.com> - seanchann
+
+
+RUN yum install --setopt=tsflags=nodocs -y ipvsadm
+

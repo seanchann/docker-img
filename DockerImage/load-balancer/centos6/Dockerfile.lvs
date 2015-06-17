@@ -1,0 +1,13 @@
+FROM rhcentos6/lvsdep
+MAINTAINER The rongheTV lvs image <www.ronghe.com> - seanchann
+
+ADD /run-lb.sh /run-lb.sh
+
+ADD /supervisord.d/  /etc/supervisord.d/
+RUN chmod 600 /etc/supervisord.d/*.ini \
+  && chmod +x /run-lb.sh
+
+
+
+
+CMD ["/bin/bash", "/run-lb.sh"]
