@@ -14,6 +14,5 @@ docker build --rm -t rhcentos6/supervisor:latest .
 其他的镜像在使用supervisor镜像的时候，完成下面的步骤：
 
 * 在Dockerfile中：FROM rhcentos7/supervisor
-* supervisord.d文件夹到用户镜像中的/etc/supervisord.d/ 目录中。此目录中包含进程启动的配置文件比如httpd.ini。
-* 给镜像中的/etc/supervisord.d/*.ini 变更权限为600
+* 将需要启动的程序配置到/etc/supervisord.conf中，centos6版本下的supervisor的include section是有问题的。
 * 调用sh /run-supervisor.sh
