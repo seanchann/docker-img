@@ -20,8 +20,27 @@ docker build --rm -t rhcentos6/lvs:latest -f ./Dockerfile.lvs .
 ## 运行container
 
 ```bash
-docker run -p 3636 --privileged=true -d  rhcentos6/lvs
+docker run -p 3636:3636 --privileged=true --name=lvs -d  rhcentos6/lvs
 ```
 
-## 配置须知
+
+### 配置piranha-passwd
+
+piranha ui需要配置一个web访问的密码，执行下面的命令来设定密码
+
+```bash
+docker exec -it lvs piranha-passwd
+```
+
+### 通过浏览器访问pirahha来配置lvs
+
+默认我们是开启的3636端口，那么访问链接如下：
+
+```text
+http://yourhostip:3636/
+```
+
+然后登陆，使用用户名piranha，密码为我们之前配置过的密码。
+
+## lvs的配置
 

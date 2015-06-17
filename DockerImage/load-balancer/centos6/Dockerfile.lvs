@@ -5,6 +5,7 @@ ADD /run-lb.sh /run-lb.sh
 
 ADD /supervisord.d/  /etc/supervisord.d/
 RUN chmod 600 /etc/supervisord.d/*.ini \
+  && cat /etc/supervisord.d/*.ini >> /etc/supervisord.conf \
   && chmod +x /run-lb.sh
 
 
