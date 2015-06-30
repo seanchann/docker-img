@@ -1,8 +1,16 @@
+# Centos7 image
+
 Our base image base on CentOS7 that inherited from Docker hub CentOS official branch
 
-Perform the build
-#docker build --rm -t rhcentos7/base-image:latest .
+## Perform the build
+
+```bash
+docker build --rm -t rhcentos7/base-image:latest .
+```
 
 
-Launching image
-#docker run --rm -it -v /opt/dockershare:/opt/dockershare rhcentos7/base-image /bin/bash
+## Launching image
+
+```bash
+docker run --rm -it rhcentos7/base-image /bin/bash
+```
