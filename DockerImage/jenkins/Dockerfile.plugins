@@ -1,0 +1,6 @@
+FROM jenkins
+MAINTAINER The rongheTV jenkins image <www.ronghe.com> - seanchann
+
+
+COPY plugins.txt /usr/share/jenkins/plugins.txt
+RUN /usr/local/bin/plugins.sh /usr/share/jenkins/plugins.txt

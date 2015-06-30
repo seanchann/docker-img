@@ -1,0 +1,15 @@
+token-macro:latest
+parameterized-trigger:latest
+mailer:latest
+scm-api:latest
+matrix-project:latest
+ssh-credentials:latest
+credentials:latest
+durable-task:latest
+ruby-runtime:latest
+git-client:latest
+git:latest
+gitlab-hook:latest
+docker-build-step:latest
+docker-plugin:latest
+tap:latest
