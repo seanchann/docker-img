@@ -22,5 +22,23 @@ docker create --name=registry-dv -v /opt/dockerdata/registry/conf:/registry-conf
 启动我们的私有registry
 
 ```bash
-docker run --name=registry --volumes-from=registry-dv  -e SETTINGS_FLAVOR=prod  -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml  -d -p 5000:5000 registry
+docker run --name=registry --volumes-from=registry-dv \
+  -e GUNICORN_OPTS=[--preload] \
+  -e SETTINGS_FLAVOR=prod \
+  -e DOCKER_REGISTRY_CONFIG=/registry-conf/config.yml \
+  -d -p 5000:5000 registry
 ```
+
+启动一个registry mirror,主要是用来与dockerhub进行同步。
+
+```bash
+docker run -p 5000:5000 \
+    -e STANDALONE=false \
+    -e MIRROR_SOURCE=https://registry-1.docker.io \
+    -e MIRROR_SOURCE_INDEX=https://index.docker.io \
+    registry
+```
+
+那么，我们拉取镜像的时候，可以优先走mirror而不是dockerhub
+
+注意在docker daemon启动的时候传入参数：--registry-mirror=http://mirror-ip:port
