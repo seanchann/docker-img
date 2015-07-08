@@ -1,15 +1,28 @@
-Our lamp image base on ronghe-base that inherited from Docker hub CentOS official branch
+# mysql with docker
 
-Perform the build
-#docker build --rm -t rhcentos7/mysql:latest .
+## Perform the build
+
+```bash
+docker build --rm -t rhcentos7/mysql:latest .
+```
+
+## 运行mysql的服务
+
+创建一个mysql的data volume
+
+```bash
+docker create -v yourdir:/var/lib/mysql  --name=mysql-dv  rhcentos7/mysql
+```
+
+可以通过-v来映射已有的mysql数据目录或者使用下面的命令重新初始化一个数据volume
+
+```bash
+docker run -v yourdir:/var/lib/mysql --name=mysql-dv  rhcentos7/mysql /config_mysql.sh
+```
 
 
-create a mysql data volume container:
-# docker run --name=your-volume-name  rhcentos7/mysql true
+启动一个mysql的容器
 
-Initialise it using a temporary one-time mariadb container:
-# docker run --rm --volumes-from=your-volume-name rhcentos7/mysql /config_mysql.sh
-
-Then run mysql server container:
-
-# docker run -d -p 3306:3306  --name=your-sql-name  --volumes-from=your-volume-name rhcentos7/mysql
+```bash
+docker run -d -p 3306:3306  --name=your-sql-name  --volumes-from=mysql-dv rhcentos7/mysql
+```
