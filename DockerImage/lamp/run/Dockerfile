@@ -15,7 +15,6 @@ RUN chmod -v +x /run-httpd.sh
 
 EXPOSE 80
 
-VOLUME ["/var/www/html"]
 
 CMD ["/run-httpd.sh"]
 
