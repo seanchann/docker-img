@@ -57,3 +57,31 @@ git插件提供对git命令的支持
 ### TAP插件
 
 主要是根据build完成后的结果，绘制编译结果统计图。
+
+
+## jenkins with DIND ##
+
+DIND在很多场合可以简化我们的工作场景，避免对宿主机的进一步的污染，比如Jenkins来编译docker镜像的请求，就可以完全启动一个docker，在docker内部进行docker镜像的编译动作，更大程度上的保证了整个发布流程不会被其他环境因素所干扰。
+
+## DIND的镜像编译 ##
+
+编译DIND镜像的命令：
+
+`docker build --rm -t rh/jenkins-dind:latest -f Dockerfile.dind .`　
+
+## 启动dind容器 ##
+
+由于我们是在docker内部启动docker daemon，因此在run的时候，特别注意权限相关的问题 （privileged）
+
+### 创建一个jenkins的data volume 容器
+
+```bash
+mkdir -p /your/home/tmp
+chmod 777 /your/home/tmp
+docker create -v /your/home:/var/jenkins_home --name=jenkins-dv  rh/jenkins-dind
+```
+
+### 启动dind版本的jenkins容器
+
+
+`docker run --privileged --dns 8.8.8.8 -d --name jenkins --volumes-from jenkins-dv -p 8090:8080 -u root rh/jenkins-dind` 
