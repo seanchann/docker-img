@@ -88,7 +88,7 @@ docker create -v /your/home:/var/jenkins_home --name=jenkins-dv  rh/jenkins-dind
 
 注意docker in docker的方式需要传递docker的启动参数进来，因此完整的启动命令如下：
 
-`docker run --privileged --dns 8.8.8.8 -d --name jenkins --volumes-from jenkins-dv -p 8090:8080 -e "DOCKER_DAEMON_ARGS=--insecure-registry dockerhub.ironghe.tv:5000" -u root rh/jenkins-dind`
+`docker run --privileged -d --name jenkins --volumes-from jenkins-dv -p 8090:8080 -e "DOCKER_DAEMON_ARGS=--insecure-registry dockerhub.ironghe.tv:5000" -u root rh/jenkins-dind`
 
 
 ### 启动dind版本容器的注意事项
