@@ -85,3 +85,12 @@ docker create -v /your/home:/var/jenkins_home --name=jenkins-dv  rh/jenkins-dind
 
 
 `docker run --privileged --dns 8.8.8.8 -d --name jenkins --volumes-from jenkins-dv -p 8090:8080 -u root rh/jenkins-dind` 
+
+注意docker in docker的方式需要传递docker的启动参数进来，因此完整的启动命令如下：
+
+`docker run --privileged --dns 8.8.8.8 -d --name jenkins --volumes-from jenkins-dv -p 8090:8080 -e "DOCKER_DAEMON_ARGS=--insecure-registry dockerhub.ironghe.tv:5000" -u root rh/jenkins-dind`
+
+
+### 启动dind版本容器的注意事项
+
+由于docker in docker它的storage还是必须依赖于宿主机的系统，因此它会在宿主机上创建/var/lib/docker来工作。但是这个有的时候，重新启动和删除的时候，会有devicemapper busy的错误，造成没有删除掉/var/lib/docker，当你在此启动时候，docker daemon就会无法启动。这个时候，我们只需要重新手动删除这个目录即可。
