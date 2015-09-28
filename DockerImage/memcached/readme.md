@@ -1,4 +1,4 @@
-ched How To Start
+# Memcached How To Start
 ### Memcached Docker Start
 
 ```
@@ -6,7 +6,7 @@ ched How To Start
 IMG=192.168.60.37:5000/sameersbn/memcached
 docker run -p 11211:11211 -d --name=test-memcached $IMG
 ```
-###memcached login
+### Memcached Login
 * telnet {ip} {port} 
 
 * example:    
