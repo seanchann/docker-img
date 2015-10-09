@@ -12,7 +12,11 @@ RUN apt-get update -qq && apt-get install -qqy \
     apt-transport-https \
     ca-certificates \
     lxc \
-    supervisor
+    supervisor sudo
+
+#give jenkins permission with sudo
+RUN adduser jenkins sudo \
+  && echo "jenkins ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/jenkins
 
 # Create log folder for supervisor, jenkins and docker
 RUN mkdir -p /var/log/supervisor
