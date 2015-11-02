@@ -93,4 +93,8 @@ docker create -v /your/home:/var/jenkins_home --name=jenkins-dv  rh/jenkins-dind
 
 ### 启动dind版本容器的注意事项
 
-由于docker in docker它的storage还是必须依赖于宿主机的系统，因此它会在宿主机上创建/var/lib/docker来工作。但是这个有的时候，重新启动和删除的时候，会有devicemapper busy的错误，造成没有删除掉/var/lib/docker，当你在此启动时候，docker daemon就会无法启动。这个时候，我们只需要重新手动删除这个目录即可。
+- 由于docker in docker它的storage还是必须依赖于宿主机的系统，因此它会在宿主机上创建/var/lib/docker来工作。但是这个有的时候，重新启动和删除的时候，会有devicemapper busy的错误，造成没有删除掉/var/lib/docker，当你在此启动时候，docker daemon就会无法启动。这个时候，我们只需要重新手动删除这个目录即可。
+
+- 发现在fedora22的主机上需要安装
+  - lxc-1.1.3-1.fc22.x86_64
+  - lxc-libs-1.1.3-1.fc22.x86_64
