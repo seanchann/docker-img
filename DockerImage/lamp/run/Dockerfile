@@ -23,6 +23,3 @@ EXPOSE 80
 
 
 CMD ["/run-httpd.sh"]
-
-
-
